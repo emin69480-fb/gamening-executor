@@ -6,365 +6,51 @@
     <title>GLITCH X EXECUTOR</title>
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            box-sizing: border-box;
         }
-
-        body {
-            background-color: #030304;
-            /* Resimdeki o kırmızı yıldırımlı ve dumanlı atmosfer efekti */
-            background-image: 
-                radial-gradient(circle at 50% 30%, rgba(139, 0, 0, 0.25) 0%, transparent 60%),
-                linear-gradient(to bottom, #000000 0%, #080303 50%, #000000 100%);
-            color: #ffffff;
-            min-height: 100vh;
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #030202;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-            position: relative;
+            justify-content: center;
+            align-items: flex-start;
         }
-
-        /* Siber çizgiler ve arka plan dokusu efekti */
-        body::before {
-            content: '';
+        /* Resmi tam ekran yapan ve oranını koruyan kapsayıcı */
+        .bg-container {
+            position: relative;
+            width: 100%;
+            max-width: 1920px;
+            background-image: url('arkaplan.png');
+            background-size: contain;
+            background-position: top center;
+            background-repeat: no-repeat;
+            aspect-ratio: 1920 / 1080;
+        }
+        /* Resmin üzerindeki GENERATE DOWNLOAD LINK butonunun tam üzerine oturan görünmez buton */
+        .download-trigger {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0), rgba(0, 0, 255, 0.03));
-            background-size: 100% 4px, 6px 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .main-wrapper {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        /* Üst Menü / Navbar */
-        header {
-            width: 100%;
-            padding: 30px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-box {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-text {
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            font-style: italic;
-            color: #ffffff;
-        }
-
-        .logo-text span {
-            color: #ff1a1a;
-            text-shadow: 0 0 15px rgba(255, 26, 26, 0.7);
-        }
-
-        .logo-subtext {
-            font-size: 9px;
-            color: #ff1a1a;
-            letter-spacing: 5px;
-            font-weight: bold;
-            margin-top: -6px;
-            text-shadow: 0 0 5px rgba(255, 26, 26, 0.5);
-        }
-
-        nav {
-            display: flex;
-            gap: 30px;
-        }
-
-        nav a {
-            color: #aaaaaa;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            transition: 0.3s;
-        }
-
-        nav a:hover, nav a.active {
-            color: #ff1a1a;
-            text-shadow: 0 0 8px rgba(255, 26, 26, 0.6);
-        }
-
-        .header-btn {
-            border: 2px solid #ff1a1a;
-            background: linear-gradient(135deg, rgba(255, 26, 26, 0.1), rgba(0,0,0,0.4));
-            padding: 10px 24px;
-            border-radius: 8px;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            box-shadow: 0 0 15px rgba(255, 26, 26, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .header-btn:hover {
-            background: #ff1a1a;
-            box-shadow: 0 0 25px rgba(255, 26, 26, 0.6);
-        }
-
-        /* Orta Alan */
-        .hero-section {
-            text-align: center;
-            margin-top: 50px;
-            width: 100%;
-        }
-
-        .main-title {
-            font-size: 95px;
-            font-weight: 900;
-            font-style: italic;
-            letter-spacing: 3px;
-            line-height: 0.9;
-            color: #ffffff;
-            margin-bottom: 5px;
-            text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .main-title span {
-            color: #ff1a1a;
-            text-shadow: 0 0 40px rgba(255, 26, 26, 0.9);
-        }
-
-        .main-subtitle {
-            font-size: 22px;
-            color: #ff1a1a;
-            letter-spacing: 12px;
-            font-weight: 900;
-            margin-bottom: 35px;
-            text-shadow: 0 0 10px rgba(255, 26, 26, 0.4);
-        }
-
-        .main-desc {
-            font-size: 11px;
-            color: #ff1a1a;
-            letter-spacing: 4px;
-            font-weight: bold;
-            margin-bottom: 60px;
-            opacity: 0.9;
-        }
-
-        .choose-title {
-            font-size: 12px;
-            color: #ffffff;
-            letter-spacing: 3px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .choose-title::before, .choose-title::after {
-            content: '➔';
-            color: #ff1a1a;
-            font-size: 10px;
-        }
-
-        /* 3'lü Seçenek Kartları */
-        .cards-container {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 45px;
-            flex-wrap: wrap;
-        }
-
-        .download-card {
-            background: rgba(10, 10, 12, 0.75);
-            border: 1px solid #1a1a1f;
-            border-radius: 12px;
-            width: 250px;
-            padding: 35px 25px;
+            bottom: 6.2%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 26.5%;
+            height: 6.5%;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        /* Fotoğraftaki Sol Üst Yuvarlak İşaretçi */
-        .download-card::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 12px;
-            height: 12px;
-            border: 2px solid #33333d;
-            border-radius: 50%;
-            transition: 0.3s;
-        }
-
-        /* Resimdeki gibi parlayan aktif kart stili (Windows) */
-        .download-card.active {
-            border-color: #ff1a1a;
-            box-shadow: 0 0 30px rgba(255, 26, 26, 0.25), inset 0 0 20px rgba(255, 26, 26, 0.1);
-            background: rgba(20, 8, 8, 0.6);
-        }
-
-        .download-card.active::before {
-            border-color: #ff1a1a;
-            background: radial-gradient(circle, #ff1a1a 40%, transparent 50%);
-            box-shadow: 0 0 8px #ff1a1a;
-        }
-
-        .download-card:hover {
-            border-color: #ff1a1a;
-            transform: translateY(-3px);
-        }
-
-        .card-img {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .download-card.active .card-img {
-            filter: drop-shadow(0 0 10px rgba(255, 26, 26, 0.6));
-        }
-
-        .card-name {
-            font-size: 14px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-        }
-
-        .card-info {
-            font-size: 10px;
-            color: #666677;
-            line-height: 1.5;
-        }
-
-        /* Alt Büyük İndirme Butonu */
-        .btn-wrapper {
-            margin-bottom: 60px;
-        }
-
-        .action-btn {
-            border: 2px solid #ff1a1a;
-            background: rgba(5, 5, 6, 0.9);
-            color: #ffffff;
-            padding: 16px 50px;
-            font-size: 12px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            transition: 0.3s;
-            box-shadow: 0 0 20px rgba(255, 26, 26, 0.15), inset 0 0 15px rgba(255, 26, 26, 0.1);
-        }
-
-        .action-btn:hover {
-            background: #ff1a1a;
-            box-shadow: 0 0 35px rgba(255, 26, 26, 0.7);
-            transform: scale(1.03);
-        }
-
-        /* Altbilgi */
-        footer {
-            width: 100%;
-            padding: 25px;
-            text-align: center;
-            font-size: 9px;
-            color: #44444c;
-            letter-spacing: 1.5px;
-            border-top: 1px solid #101014;
-            margin-top: auto;
+            background: transparent;
+            border: none;
+            display: block;
+            z-index: 999;
         }
     </style>
 </head>
 <body>
 
-    <div class="main-wrapper">
-        <header>
-            <div class="logo-box">
-                <div class="logo-text">GLITCH <span>X</span></div>
-                <div class="logo-subtext">EXECUTOR</div>
-            </div>
-            <nav>
-                <a href="#" class="active">HOME</a>
-                <a href="#">FEATURES</a>
-                <a href="#">SHOWCASE</a>
-                <a href="#">SUPPORT</a>
-                <a href="#">DISCORD</a>
-                <a href="#">ABOUT</a>
-            </nav>
-            <a href="https://share.google" target="_blank" class="header-btn">📥 DOWNLOAD</a>
-        </header>
-
-        <div class="hero-section">
-            <h1 class="main-title">GLITCH <span>X</span></h1>
-            <div class="main-subtitle">EXECUTOR</div>
-            <div class="main-desc">POWERFUL. STABLE. UNSTOPPABLE.</div>
-
-            <div class="choose-title">Choose Your Download</div>
-
-            <div class="cards-container">
-                <!-- Windows Kartı (Aktif Kırmızı Parlama) -->
-                <div class="download-card active">
-                    <div class="card-img">🟥</div> <!-- Windows Logosu benzeri kırmızı simge -->
-                    <div class="card-name">Windows</div>
-                    <div class="card-info">Recommended for most users</div>
-                </div>
-
-                <!-- ZIP Kartı -->
-                <div class="download-card">
-                    <div class="card-img">📦</div>
-                    <div class="card-name">ZIP File</div>
-                    <div class="card-info">Portable version<br>No installation required</div>
-                </div>
-
-                <!-- EXE Kartı -->
-                <div class="download-card">
-                    <div class="card-img">⚙️</div>
-                    <div class="card-name">EXE File</div>
-                    <div class="card-info">Installer version<br>Easy to install</div>
-                </div>
-            </div>
-
-            <div class="btn-wrapper">
-                <!-- Çalışan Gerçek İndirme Butonu -->
-                <a href="https://share.google" target="_blank" class="action-btn">
-                    📥 GENERATE DOWNLOAD LINK
-                </a>
-            </div>
-        </div>
+    <div class="bg-container">
+        <!-- Tıklandığında senin indirme linkini açacak gizli alan -->
+        <a href="https://share.google" target="_blank" class="download-trigger"></a>
     </div>
-
-    <footer>
-        © 2024 GLITCH X EXECUTOR. ALL RIGHTS RESERVED.
-    </footer>
 
 </body>
 </html>
