@@ -1,160 +1,322 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLITCH X - YÜRÜTÜCÜ</title>
+    <title>GLITCH X EXECUTOR</title>
     <style>
-        body {
-            background-color: #0b0b0b;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #050505;
+            /* Orijinal karanlık ve yıldırımlı atmosfer için siyah-kırmızı arka plan gradyanı */
+            background-image: radial-gradient(circle at center, #150505 0%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-x: hidden;
         }
+
+        /* Üst Menü / Navbar Tasarımı */
         header {
             width: 100%;
-            background-color: #111;
-            padding: 15px 0;
+            max-width: 1200px;
+            padding: 20px;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #222;
         }
-        .logo-metin h2 {
-            margin: 0;
+
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: #ffffff;
+            font-style: italic;
+        }
+
+        .logo-main span {
             color: #ff2a2a;
-            display: inline-block;
+            text-shadow: 0 0 10px rgba(255, 42, 42, 0.6);
         }
-        .logo-metin span {
-            color: #fff;
+
+        .logo-sub {
+            font-size: 10px;
+            color: #ff2a2a;
+            letter-spacing: 4px;
             font-weight: bold;
-            margin-left: 5px;
+            margin-top: -5px;
+            padding-left: 2px;
         }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
         nav a {
-            color: #bbb;
+            color: #888888;
             text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: 0.3s;
         }
-        nav a.aktif, nav a:hover {
+
+        nav a:hover, nav a.active {
             color: #ff2a2a;
         }
-        .ana-konteyner {
-            max-width: 600px;
-            width: 90%;
-            margin: 50px auto;
-            text-align: center;
-            background: #141414;
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid #222;
-        }
-        .ana-logo {
-            color: #ff2a2a;
-            margin: 0;
-            font-size: 3em;
-        }
-        .ana-alt {
-            color: #888;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-        }
-        .bolum-basligi {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-        .platform-grubu, .dosya-tipi-grubu {
-            margin-bottom: 20px;
-        }
-        .platform-karti.aktif, .dosya-karti.aktif {
-            background: #1c1c1c;
-            padding: 15px;
-            border-radius: 6px;
+
+        .nav-download-btn {
             border: 1px solid #ff2a2a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .dosya-simgesi { 
-            border: 1px dashed #555555; 
-            padding: 5px 8px; 
-            font-size: 11px; 
-            font-weight: bold; 
-            border-radius: 4px; 
-            color: #ff2a2a; 
-        }
-        .dosya-detaylari h4 { margin: 0; font-size: 14px; }
-        .dosya-detaylari p { margin: 2px 0 0 0; font-size: 10px; color: #666666; }
-        
-        .eylem-dugmesi-konteyneri {
-            margin-top: 30px;
-        }
-        .olustur-dugmesi {
-            background: linear-gradient(180deg, #ff2a2a 0%, #990000 100%); 
-            color: white; 
-            border: none;
-            padding: 15px 40px; 
-            font-size: 14px; 
-            font-weight: bold; 
-            letter-spacing: 2px; 
+            padding: 8px 20px;
             border-radius: 6px;
-            cursor: pointer; 
-            box-shadow: 0 4px 15px rgba(255, 42, 42, 0.4); 
-            text-decoration: none; 
-            display: inline-block;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            background: rgba(255, 42, 42, 0.05);
+            transition: 0.3s;
+            box-shadow: inset 0 0 10px rgba(255, 42, 42, 0.2);
         }
-        .olustur-dugmesi:hover {
-            background: linear-gradient(180deg, #ff4444 0%, #cc0000 100%);
+
+        .nav-download-btn:hover {
+            background: #ff2a2a;
+            box-shadow: 0 0 15px rgba(255, 42, 42, 0.5);
+        }
+
+        /* Ana İçerik Alanı */
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            text-align: center;
+            margin-top: 60px;
+            flex-grow: 1;
+        }
+
+        .hero-title {
+            font-size: 75px;
+            font-weight: 900;
+            font-style: italic;
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .hero-title span {
+            color: #ff2a2a;
+            text-shadow: 0 0 20px rgba(255, 42, 42, 0.8);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: #ff2a2a;
+            letter-spacing: 8px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .hero-desc {
+            font-size: 12px;
+            color: #666;
+            letter-spacing: 3px;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            color: #ffffff;
+            letter-spacing: 2px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        /* Kart Seçim Alanları (Windows, ZIP, EXE) */
+        .download-options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid #222222;
+            border-radius: 10px;
+            width: 220px;
+            padding: 30px 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Görseldeki gibi seçili olan aktif kartın kırmızı parlaması */
+        .card.active {
+            border-color: #ff2a2a;
+            box-shadow: 0 0 20px rgba(255, 42, 42, 0.15), inset 0 0 15px rgba(255, 42, 42, 0.05);
+        }
+
+        .card:hover {
+            border-color: #ff2a2a;
+        }
+
+        /* Sol üstteki radyo butonu halkası */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #444;
+            border-radius: 50%;
+        }
+
+        .card.active::before {
+            border-color: #ff2a2a;
+            background: radial-gradient(circle, #ff2a2a 40%, transparent 50%);
+        }
+
+        .card-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #ff2a2a;
+        }
+
+        .card-title {
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .card-desc {
+            font-size: 10px;
+            color: #666666;
+            line-height: 1.4;
+        }
+
+        /* Büyük Alt İndirme Butonu */
+        .action-container {
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .generate-btn {
+            border: 1px solid #ff2a2a;
+            background: rgba(5, 5, 5, 0.8);
+            color: #ffffff;
+            padding: 15px 45px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            box-shadow: inset 0 0 15px rgba(255, 42, 42, 0.2);
+        }
+
+        .generate-btn:hover {
+            background: #ff2a2a;
+            box-shadow: 0 0 25px rgba(255, 42, 42, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Alt Bilgi / Footer */
+        footer {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            font-size: 10px;
+            color: #444444;
+            letter-spacing: 1px;
+            border-top: 1px solid #111111;
+            margin-top: auto;
         }
     </style>
 </head>
 <body>
+
     <header>
-        <div class="logo-bolumu">
-            <div class="logo-metin"><h2>GLITCH X</h2><span>YÜRÜTÜCÜ</span></div>
+        <div class="logo-area">
+            <div class="logo-main">GLITCH <span>X</span></div>
+            <div class="logo-sub">EXECUTOR</div>
         </div>
         <nav>
-            <a href="#" class="aktif">EV</a>
-            <a href="#">ÖZELLİKLER</a>
+            <a href="#" class="active">HOME</a>
+            <a href="#">FEATURES</a>
+            <a href="#">SHOWCASE</a>
+            <a href="#">SUPPORT</a>
             <a href="#">DISCORD</a>
-            <a href="#" class="nav-indir-dugmesi">📥 İNDİR</a>
+            <a href="#">ABOUT</a>
         </nav>
+        <a href="https://share.google" target="_blank" class="nav-download-btn">📥 DOWNLOAD</a>
     </header>
-    
-    <div class="ana-konteyner">
-        <h1 class="ana-logo">GLITCH X</h1>
-        <div class="ana-alt">YÜRÜTÜCÜ</div>
-        <div class="bolum-basligi">NE İNDİRMEK İSTİYORSUNUZ?</div>
-        
-        <div class="platform-grubu">
-            <div class="platform-karti aktif">
-                <div class="simge">💻</div>
-                <span>PENCERELER</span>
+
+    <div class="container">
+        <h1 class="hero-title">GLITCH <span>X</span></h1>
+        <div class="hero-subtitle">EXECUTOR</div>
+        <div class="hero-desc">POWERFUL. STABLE. UNSTOPPABLE.</div>
+
+        <div class="section-title">— Choose Your Download —</div>
+
+        <div class="download-options">
+            <!-- Windows Seçeneği (Orijinal görseldeki gibi varsayılan aktif) -->
+            <div class="card active">
+                <div class="card-icon">💻</div>
+                <div class="card-title">Windows</div>
+                <div class="card-desc">Recommended for most users</div>
+            </div>
+
+            <!-- ZIP Seçeneği -->
+            <div class="card">
+                <div class="card-icon">📁</div>
+                <div class="card-title">ZIP File</div>
+                <div class="card-desc">Portable version<br>No installation required</div>
+            </div>
+
+            <!-- EXE Seçeneği -->
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <div class="card-title">EXE File</div>
+                <div class="card-desc">Installer version<br>Easy to install</div>
             </div>
         </div>
-        
-        <div class="dosya-tipi-grubu">
-            <div class="dosya-karti aktif">
-                <div class="dosya-simgesi">LUA</div>
-                <div class="dosya-detaylari">
-                    <h4>MM2 KOMUT DOSYASI</h4>
-                    <p style="color: #ff2a2a;">Eclipse Hub v3</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="eylem-dugmesi-konteyneri">
-            <!-- İstediğin yönlendirme linki buraya sorunsuzca entegre edildi -->
-            <a href="https://share.google" target="_blank" class="olustur-dugmesi">
-                📥 İNDİRME BAĞLANTISI OLUŞTUR
+
+        <div class="action-container">
+            <!-- Dosya İndirme Butonu -->
+            <a href="https://share.google" target="_blank" class="generate-btn">
+                📥 GENERATE DOWNLOAD LINK
             </a>
         </div>
     </div>
+
+    <footer>
+        © 2024 GLITCH X EXECUTOR. ALL RIGHTS RESERVED.
+    </footer>
+
 </body>
 </html>
