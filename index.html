@@ -166,6 +166,31 @@
         .card-img {
             font-size: 36px;
             margin-bottom: 20px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 🛠️ YENİ: Gerçek Kırmızı Windows Logosu Tasarımı */
+        .windows-logo {
+            width: 32px;
+            height: 32px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 3px;
+        }
+
+        .windows-logo span {
+            background-color: #ff1a1a;
+            box-shadow: 0 0 10px rgba(255, 26, 26, 0.5);
+        }
+
+        /* Windows 10/11'deki o hafif eğik perspektif havası */
+        .windows-logo-wrapper {
+            transform: perspective(100px) rotateY(-15deg);
+            margin-bottom: 20px;
         }
 
         .card-name {
@@ -173,6 +198,7 @@
             font-weight: 800;
             letter-spacing: 1.5px;
             margin-bottom: 6px;
+            text-transform: uppercase;
         }
 
         .card-info {
@@ -238,11 +264,18 @@
             <div class="choose-title">Choose Your Download</div>
 
             <div class="cards-container">
+                <!-- DÜZELTİLEN YER: Artık düz kırmızı kutu yok, gerçek pencereli parlayan Windows logosu var -->
                 <div class="download-card active">
-                    <div class="card-img">🟥</div>
+                    <div class="windows-logo-wrapper">
+                        <div class="windows-logo">
+                            <span></span><span></span>
+                            <span></span><span></span>
+                        </div>
+                    </div>
                     <div class="card-name">Windows</div>
                     <div class="card-info">Recommended for most users</div>
                 </div>
+
                 <div class="download-card">
                     <div class="card-img">📦</div>
                     <div class="card-name">ZIP File</div>
