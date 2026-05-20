@@ -1,0 +1,34 @@
+-- [[ GLITCH X EXECUTOR - OFFICIAL SCRIPT ]] --
+print("Glitch X başarıyla çalıştırıldı!")
+
+local CoreGui = game:GetService("CoreGui")
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+
+local function showNotification()
+    local sg = Instance.new("ScreenGui")
+    sg.Name = "GlitchXNotify"
+    sg.Parent = CoreGui
+    
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(0, 300, 0, 80)
+    frame.Position = UDim2.new(0.5, -150, 0.4, -40)
+    frame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+    frame.BorderSizePixel = 2
+    frame.BorderColor3 = Color3.fromRGB(255, 0, 0)
+    frame.Parent = sg
+    
+    local text = Instance.new("TextLabel")
+    text.Size = UDim2.new(1, 0, 1, 0)
+    text.Text = "GLITCH X ACTIVE!\nWelcome: " .. localPlayer.Name
+    text.TextColor3 = Color3.fromRGB(255, 255, 255)
+    text.TextSize = 18
+    text.Font = Enum.Font.SourceSansBold
+    text.BackgroundTransparency = 1
+    text.Parent = frame
+    
+    wait(4)
+    sg:Destroy()
+end
+
+showNotification()
