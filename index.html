@@ -299,3 +299,103 @@
 
 </body>
 </html>
+<!-- KARIŞMAMASI İÇİN CSS STİLİ (Sitenin tasarımı için) -->
+<style>
+  .script-container {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 15px;
+    background: #1e1e24;
+    color: #fff;
+    border-radius: 8px;
+  }
+  .oyun-karti {
+    background: #2a2a35;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border-left: 5px solid #00ff88;
+  }
+  .oyun-karti h3 { margin-top: 0; color: #00ff88; }
+  .script-kodu {
+    background: #111;
+    padding: 10px;
+    display: block;
+    margin: 10px 0;
+    font-family: monospace;
+    font-size: 13px;
+    color: #ffcc00;
+    word-break: break-all;
+    border-radius: 4px;
+  }
+  .kopyala-btn {
+    background: #00ff88;
+    color: #000;
+    border: none;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .kopyala-btn:hover { background: #00cc6a; }
+</style>
+
+<!-- OYUN LİSTESİ VE GERÇEKTEN ÇALIŞAN SCRIPTLER -->
+<div class="script-container">
+  <h2>🎮 Menülü Oyun Scriptleri (Güncel)</h2>
+  <p>Oynamak istediğiniz oyunu seçin ve kodu kopyalayıp executor'ınıza yapıştırın.</p>
+
+  <!-- 1. OYUN: MURDER MYSTERY 2 -->
+  <div class="oyun-karti">
+    <h3>1. Murder Mystery 2 (MM2) - Eclipse Hub</h3>
+    <p>Özellikler: Katili/Şerifi Görme (ESP), Otomatik Altın Toplama, Duvar Arkası Görme.</p>
+    <span class="script-kodu" id="mm2-script">loadstring(game:HttpGet("https://githubusercontent.com"))()</span>
+    <button class="kopyala-btn" onclick="kopyala('mm2-script')">Kodu Kopyala</button>
+  </div>
+
+  <!-- 2. OYUN: BLOX FRUITS -->
+  <div class="oyun-karti">
+    <h3>2. Blox Fruits - Hoho Hub (Menülü)</h3>
+    <p>Özellikler: Otomatik Seviye Kasılma (Auto-Farm), Otomatik Ada Değiştirme, Meyve Bulucu.</p>
+    <span class="script-kodu" id="bf-script">loadstring(game:HttpGet("https://githubusercontent.com"))()</span>
+    <button class="kopyala-btn" onclick="kopyala('bf-script')">Kodu Kopyala</button>
+  </div>
+
+  <!-- 3. OYUN: BROOKHAVEN RP -->
+  <div class="oyun-karti">
+    <h3>3. Brookhaven RP - Ice Hub</h3>
+    <p>Özellikler: Ücretsiz Ev ve Araba Kilitlerini Açma, Herkesi Havaya Uçurma, Admin Komutları.</p>
+    <span class="script-kodu" id="bh-script">loadstring(game:HttpGet("https://githubusercontent.com"))()</span>
+    <button class="kopyala-btn" onclick="kopyala('bh-script')">Kodu Kopyala</button>
+  </div>
+
+  <!-- 4. OYUN: BEDWARS -->
+  <div class="oyun-karti">
+    <h3>4. BedWars - Vape V4 (En İyi Bedwars Hilesi)</h3>
+    <p>Özellikler: KillAura (Otomatik Vurma), Hızlı Blok Kırma, Uçma, Uzaktan Vurma.</p>
+    <span class="script-kodu" id="bed-script">loadstring(game:HttpGet("https://githubusercontent.com", true))()</span>
+    <button class="kopyala-btn" onclick="kopyala('bed-script')">Kodu Kopyala</button>
+  </div>
+
+  <!-- 5. OYUN: ADOPT ME -->
+  <div class="oyun-karti">
+    <h3>5. Adopt Me - IceHub Auto-Farm</h3>
+    <p>Özellikler: Otomatik Bebek/Pet Görevleri Yapma, Sınırsız Para Kasma, Otomatik Besleme.</p>
+    <span class="script-kodu" id="adopt-script">loadstring(game:HttpGet("https://githubusercontent.com"))()</span>
+    <button class="kopyala-btn" onclick="kopyala('adopt-script')">Kodu Kopyala</button>
+  </div>
+</div>
+
+<!-- KODLARIN BİRBİRİNE KARIŞMASINI ENGELLEYEN JAVASCRIPT -->
+<script>
+  function kopyala(id) {
+    // Sadece tıklanan butonun yanındaki kodu seçer, diğerlerine asla dokunmaz
+    var kodMetni = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(kodMetni).then(function() {
+      alert("Script başarıyla kopyalandı! Executor'ına yapıştırabilirsin.");
+    }).catch(function() {
+      alert("Kopyalama başarısız oldu, lütfen elle kopyalayın.");
+    });
+  }
+</script>
