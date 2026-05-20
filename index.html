@@ -1,35 +1,160 @@
-<style>
-    .dosya-simgesi { border: 1px dashed #555555; padding: 5px 8px; font-size: 11px; font-weight: bold; border-radius: 4px; color: #ff2a2a; }
-    .dosya-detaylari h4 { margin: 0; font-size: 14px; }
-    .dosya-detaylari p { margin: 2px 0 0 0; font-size: 10px; color: #666666; }
-    .olustur-dugmesi {
-        background: linear-gradient(180deg, #ff2a2a 0%, #990000 100%); color: white; border: none;
-        padding: 15px 40px; font-size: 14px; font-weight: bold; letter-spacing: 2px; border-radius: 6px;
-        cursor: pointer; box-shadow: 0 4px 15px rgba(255, 42, 42, 0.4); text-decoration: none; display: inline-block;
-    }
-</style>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLITCH X - YÜRÜTÜCÜ</title>
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            width: 100%;
+            background-color: #111;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-bottom: 1px solid #222;
+        }
+        .logo-metin h2 {
+            margin: 0;
+            color: #ff2a2a;
+            display: inline-block;
+        }
+        .logo-metin span {
+            color: #fff;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        nav a {
+            color: #bbb;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a.aktif, nav a:hover {
+            color: #ff2a2a;
+        }
+        .ana-konteyner {
+            max-width: 600px;
+            width: 90%;
+            margin: 50px auto;
+            text-align: center;
+            background: #141414;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #222;
+        }
+        .ana-logo {
+            color: #ff2a2a;
+            margin: 0;
+            font-size: 3em;
+        }
+        .ana-alt {
+            color: #888;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+        .bolum-basligi {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .platform-grubu, .dosya-tipi-grubu {
+            margin-bottom: 20px;
+        }
+        .platform-karti.aktif, .dosya-karti.aktif {
+            background: #1c1c1c;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #ff2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .dosya-simgesi { 
+            border: 1px dashed #555555; 
+            padding: 5px 8px; 
+            font-size: 11px; 
+            font-weight: bold; 
+            border-radius: 4px; 
+            color: #ff2a2a; 
+        }
+        .dosya-detaylari h4 { margin: 0; font-size: 14px; }
+        .dosya-detaylari p { margin: 2px 0 0 0; font-size: 10px; color: #666666; }
+        
+        .eylem-dugmesi-konteyneri {
+            margin-top: 30px;
+        }
+        .olustur-dugmesi {
+            background: linear-gradient(180deg, #ff2a2a 0%, #990000 100%); 
+            color: white; 
+            border: none;
+            padding: 15px 40px; 
+            font-size: 14px; 
+            font-weight: bold; 
+            letter-spacing: 2px; 
+            border-radius: 6px;
+            cursor: pointer; 
+            box-shadow: 0 4px 15px rgba(255, 42, 42, 0.4); 
+            text-decoration: none; 
+            display: inline-block;
+        }
+        .olustur-dugmesi:hover {
+            background: linear-gradient(180deg, #ff4444 0%, #cc0000 100%);
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="logo-bolumu"><div class="logo-metin"><h2>GLITCH X</h2><span> YÜRÜTÜCÜ </span></div></div>
-        <nav><a href="#" class="aktif">EV</a><a href="#">ÖZELLİKLER</a><a href="#">DISCORD</a><a href="#" class="nav-indir-dugmesi"> 📥 İNDİR</a></nav>
+        <div class="logo-bolumu">
+            <div class="logo-metin"><h2>GLITCH X</h2><span>YÜRÜTÜCÜ</span></div>
+        </div>
+        <nav>
+            <a href="#" class="aktif">EV</a>
+            <a href="#">ÖZELLİKLER</a>
+            <a href="#">DISCORD</a>
+            <a href="#" class="nav-indir-dugmesi">📥 İNDİR</a>
+        </nav>
     </header>
+    
     <div class="ana-konteyner">
         <h1 class="ana-logo">GLITCH X</h1>
-        <div class="ana-alt"> YÜRÜTÜCÜ </div>
+        <div class="ana-alt">YÜRÜTÜCÜ</div>
         <div class="bolum-basligi">NE İNDİRMEK İSTİYORSUNUZ?</div>
+        
         <div class="platform-grubu">
-            <div class="platform-karti aktif"><div class="simge">💻</div><span>PENCERELER</span></div>
-        </div>
-        <div class="dosya-tipi-grubu">
-            <div class="dosya-karti aktif"><div class="dosya-simgesi">LUA</div>
-                <div class="dosya-detaylari"><h4>MM2 KOMUT DOSYASI</h4><p style="color: #ff2a2a;">Eclipse Hub v3</p></div>
+            <div class="platform-karti aktif">
+                <div class="simge">💻</div>
+                <span>PENCERELER</span>
             </div>
         </div>
+        
+        <div class="dosya-tipi-grubu">
+            <div class="dosya-karti aktif">
+                <div class="dosya-simgesi">LUA</div>
+                <div class="dosya-detaylari">
+                    <h4>MM2 KOMUT DOSYASI</h4>
+                    <p style="color: #ff2a2a;">Eclipse Hub v3</p>
+                </div>
+            </div>
+        </div>
+        
         <div class="eylem-dugmesi-konteyneri">
+            <!-- İstediğin yönlendirme linki buraya sorunsuzca entegre edildi -->
             <a href="https://share.google" target="_blank" class="olustur-dugmesi">
                 📥 İNDİRME BAĞLANTISI OLUŞTUR
             </a>
         </div>
     </div>
-</body> </html>
+</body>
+</html>
