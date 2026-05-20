@@ -23,3 +23,32 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+document.addEventListener("DOMContentLoaded", () => {
+    // Sitedeki indirme butonunu yakalıyoruz
+    const yukleButonu = document.querySelector('.yukle-btn');
+
+    if (yukleButonu) {
+        yukleButonu.addEventListener('click', function(evt) {
+            evt.preventDefault(); // Sayfa yukarı fırlamasın
+
+            // İnecek Roblox Luau script kodu
+            const scriptKodu = `-- Gamening Executor Official Script\nloadstring(game:HttpGet("https://githubusercontent.com"))()`;
+
+            // JavaScript havadan dosyayı hazırlıyor
+            const dosyaVerisi = new Blob([scriptKodu], { type: 'text/plain' });
+            const geciciLink = document.createElement('a');
+            geciciLink.href = URL.createObjectURL(dosyaVerisi);
+            
+            // İŞTE BURASI! Dosyanın adı tam senin istediğin gibi oldu reis!
+            geciciLink.download = "Gamening_Script.txt"; 
+
+            // Gizli linke tıkla ve indirmeyi başlat
+            document.body.appendChild(geciciLink);
+            geciciLink.click();
+            
+            // İş bitince ortalığı temizle
+            document.body.removeChild(geciciLink);
+            URL.revokeObjectURL(geciciLink.href);
+        });
+    }
+});
