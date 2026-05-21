@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const actionBtn = document.querySelector(".action-btn");
     const headerBtn = document.querySelector(".header-btn");
     const downloadCards = document.querySelectorAll(".download-card");
-    const downloadFile = "./GamingExecutor.zip";
+
+    // İndirilecek gerçek test dosyasının linki (Zararsız Roblox Simgesi)
+    const testDosyasi = "https://wikimedia.org";
 
     // Kartların seçilme efekti
     downloadCards.forEach(card => {
@@ -12,26 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Butonlara tıklandığında hem uyarı verecek hem de indirmeyi başlatacak fonksiyon
-    const indirmeyiBaslat = (e) => {
-        e.preventDefault(); // Varsayılan sayfa yönlendirmesini engelle
-        
-        // Önce uyarıyı gösterir
-        alert("🚨 GLITCH X: Dosya güncelleniyor ancak indirme işlemi yine de deneniyor!");
-        
-        // Tamam butonuna basıldığı an indirmeyi zorla başlatır
-        const gizliLink = document.createElement("a");
-        gizliLink.href = downloadFile;
-        gizliLink.download = "GamingExecutor.zip";
-        document.body.appendChild(gizliLink);
-        gizliLink.click();
-        document.body.removeChild(gizliLink);
+    // Butonlara tıklandığında çalışacak indirme fonksiyonu
+    const indirmeyiDene = (e) => {
+        e.preventDefault(); 
+        alert("🚨 GLITCH X: Test indirmesi başlatılıyor! Arkadaşınız gelene kadar sistem bu şekilde test edilecektir.");
+        window.location.href = testDosyasi;
     };
 
     if (actionBtn) {
-        actionBtn.addEventListener("click", indirmeyiBaslat);
+        actionBtn.addEventListener("click", indirmeyiDene);
     }
     if (headerBtn) {
-        headerBtn.addEventListener("click", indirmeyiBaslat);
+        headerBtn.addEventListener("click", indirmeyiDene);
     }
 });
+
