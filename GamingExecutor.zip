@@ -1,0 +1,20 @@
+// İNDİRME TETİKLEYİCİ KODU
+document.addEventListener("DOMContentLoaded", () => {
+    const actionBtn = document.querySelector(".action-btn");
+    const headerBtn = document.querySelector(".header-btn");
+
+    // NOT: Alttaki tırnak içine kendi indirme linkini (örneğin Discord, Mediafire, Google Drive veya başka bir sitedeki linki) yapıştırabilirsin.
+    const gercekIndirmeLinki = "https://github.com";
+
+    const indir = (e) => {
+        e.preventDefault();
+        window.location.href = gercekIndirmeLinki;
+    };
+
+    if (actionBtn) {
+        actionBtn.addEventListener("click", indir);
+    }
+    if (headerBtn) {
+        headerBtn.addEventListener("click", indir);
+    }
+});
