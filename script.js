@@ -3,11 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const headerBtn = document.querySelector(".header-btn");
     const downloadCards = document.querySelectorAll(".download-card");
 
-    // DÜZELTME: Kullanıcı tıkladığında gerçek dosyanızı dışarıdan bir linkle (Drive, Discord vb.) indirtelim
-    // Alttaki link yerine indirtmek istediğiniz asıl dosyanın internet linkini yazabilirsiniz
-    const gercekLink = "https://github.com";
-
-    // Kartların seçilme efekti
+    // Kartların seçilme efekti (Neon çerçeve geçişi)
     downloadCards.forEach(card => {
         card.addEventListener("click", () => {
             downloadCards.forEach(c => c.classList.remove("active"));
@@ -15,20 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Butonlara tıklandığında indirmeyi başlat
-    const baslat = (e) => {
-        e.preventDefault();
-        window.location.href = gercekLink;
+    // Butonlara tıklandığında çalışacak simülasyon fonksiyonu
+    const butonTiklandi = (e) => {
+        e.preventDefault(); // Hata veren boş indirmeyi engeller
+        
+        // Ekrana şık bir bilgilendirme kutusu çıkartır
+        alert("🚨 GLITCH X: Dosya şu anda güncelleniyor! Yeni sürüm çok yakında burada aktif olacaktır. Lütfen takipte kalın.");
     };
 
     if (actionBtn) {
-        actionBtn.setAttribute("href", gercekLink);
-        actionBtn.removeAttribute("target");
-        actionBtn.addEventListener("click", baslat);
+        actionBtn.addEventListener("click", butonTiklandi);
     }
     if (headerBtn) {
-        headerBtn.setAttribute("href", gercekLink);
-        headerBtn.removeAttribute("target");
-        headerBtn.addEventListener("click", baslat);
+        headerBtn.addEventListener("click", butonTiklandi);
     }
 });
