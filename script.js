@@ -1,23 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const downloadCards = document.querySelectorAll(".download-card");
     const actionBtn = document.querySelector(".action-btn");
     const headerBtn = document.querySelector(".header-btn");
-    const downloadFile = "./GamingExecutor.zip";
+    const downloadCards = document.querySelectorAll(".download-card");
 
+    // DÜZELTME: Kullanıcı tıkladığında gerçek dosyanızı dışarıdan bir linkle (Drive, Discord vb.) indirtelim
+    // Alttaki link yerine indirtmek istediğiniz asıl dosyanın internet linkini yazabilirsiniz
+    const gercekLink = "https://github.com";
+
+    // Kartların seçilme efekti
     downloadCards.forEach(card => {
         card.addEventListener("click", () => {
             downloadCards.forEach(c => c.classList.remove("active"));
-            card.classList.add("active"));
+            card.classList.add("active");
         });
     });
 
-    if (actionBtn) {
-        actionBtn.setAttribute("href", downloadFile);
-        actionBtn.removeAttribute("target");
-    }
+    // Butonlara tıklandığında indirmeyi başlat
+    const baslat = (e) => {
+        e.preventDefault();
+        window.location.href = gercekLink;
+    };
 
+    if (actionBtn) {
+        actionBtn.setAttribute("href", gercekLink);
+        actionBtn.removeAttribute("target");
+        actionBtn.addEventListener("click", baslat);
+    }
     if (headerBtn) {
-        headerBtn.setAttribute("href", downloadFile);
+        headerBtn.setAttribute("href", gercekLink);
         headerBtn.removeAttribute("target");
+        headerBtn.addEventListener("click", baslat);
     }
 });
